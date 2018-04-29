@@ -11,8 +11,8 @@ def main():
     host = socket.gethostname()
     port = 4444
     s.bind((host, port))
-
     s.listen()
+
     while True:
         print('Waiting for a new connection..')
         c, addr = s.accept()

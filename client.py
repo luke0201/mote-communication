@@ -7,7 +7,7 @@ BUFSIZE = 1024
 
 
 def main():
-    print('Team 4', end='\n\n')
+    print('Team 4 (client)', end='\n\n')
 
     # Connect to server
     print('Connecting to server..')
@@ -17,8 +17,7 @@ def main():
 
     # Interactive terminal-like..
     while True:
-        print('>', end=' ')
-        oper = input()
+        oper = input('> ')
 
         if oper == 'help': # Print help message
             print('Message format: <req_type> [<payload>] [to <mote_no>]')
