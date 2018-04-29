@@ -1,7 +1,7 @@
 import sys
 import socket
 
-HOST = 127.0.0.1
+HOST = '0.0.0.0'
 PORT = 4444
 BUFSIZE = 1024
 
@@ -15,19 +15,22 @@ def main():
     s.connect((HOST, PORT))
     print(s.recv(BUFSIZE), end='\n\n')
 
+    # Interactive terminal-like..
     while True:
         print('>', end=' ')
         oper = input()
-        if oper == 'help':
+
+        if oper == 'help': # Print help message
             print('Message format: <req_type> [<payload>] [to <mote_no>]')
-        elif oper == 'exit':
-            break;
-        else:
+
+        else: # Communicate
             print('Sending message to server..')
-            s.send(input())
+            s.send(bytes(oper, 'utf-8'))
             print(s.recv(BUFSIZE))
 
         print()
+
+        if oper == 'exit': break
     
     # Close the connection
     s.close()
