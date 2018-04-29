@@ -1,7 +1,7 @@
 import sys
 import socket
 
-HOST = '192.168.28.35'
+HOST = '0.0.0.0'
 PORT = 4444
 BUFSIZE = 1024
 
