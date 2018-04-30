@@ -8,7 +8,7 @@ This is a project from team 4.
 
 ## Todo
 
-- Write your mote's IPs in ```iplist.txt```
+- Write your motes' IPs in ```iplist.txt```
 - Modify ```HOST``` in ```client.py``` to your IP address
 - Run ```server.py``` and ```client.py```
 

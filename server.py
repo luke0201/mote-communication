@@ -5,10 +5,6 @@ import threading
 
 from utils import coap
 
-IPLIST_PATH = 'iplist.txt'
-PORT = 4444
-BUFSIZE = 1024
-
 
 def load_iplist(path):
     with open(path, 'r') as f:
@@ -89,21 +85,20 @@ class CoapThread(threading.Thread):
 
 
 def main():
-    global IPLIST_PATH
-    global PORT
-    global BUFSIZE
-
-    global iplist
+    iplist_path = 'iplist.txt'
+    host = '0.0.0.0'
+    port = 4444
+    bufsize = 1024
 
     print('Team 4 (server)', end='\n\n')
 
-    iplist = load_iplist(IPLIST_PATH)
+    iplist = load_iplist(iplist_path)
     print('{} motes connected'.format(len(iplist)))
     for ip in iplist:
         print('-', ip)
 
     # Create server threads
-    tcp_thread = TcpThread(socket.gethostname(), PORT, BUFSIZE)
+    tcp_thread = TcpThread(host, port, bufsize)
     coap_thread = CoapThread()
     threads = [tcp_thread, coap_thread]
 

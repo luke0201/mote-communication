@@ -1,12 +1,5 @@
-# Python3-compatibility modules
-from __future__ import print_function
-from __future__ import unicode_literals
-from __future__ import division
-from __future__ import absolute_import
-
-import getopt
-import socket
 import sys
+import socket
 
 from coapthon.client.helperclient import HelperClient
 from coapthon.utils import parse_uri

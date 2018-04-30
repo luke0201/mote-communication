@@ -1,19 +1,19 @@
 import sys
 import socket
 
-HOST = '192.168.24.224'
-PORT = 4444
-BUFSIZE = 1024
-
 
 def main():
+    host = ''
+    port = 4444
+    bufsize = 1024
+
     print('Team 4 (client)', end='\n\n')
 
     # Connect to server
     print('Connecting to server..')
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    s.connect((HOST, PORT))
-    print(s.recv(BUFSIZE), end='\n\n')
+    s.connect((host, port))
+    print(s.recv(bufsize), end='\n\n')
 
     # Interactive terminal-like..
     while True:
@@ -25,7 +25,7 @@ def main():
         else:  # Communicate
             print('Sending message to server..')
             s.send(bytes(oper, 'utf-8'))
-            print(s.recv(BUFSIZE))
+            print(s.recv(bufsize))
 
         print()
 
