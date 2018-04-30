@@ -47,7 +47,7 @@ class TcpThread(threading.Thread):
 
             # Wait for the client to send requests and then response
             while True:
-                ret = str(c.recv(BUFSIZE), 'utf-8')
+                ret = str(c.recv(bufsize), 'utf-8')
                 print('From client:', ret, sep='\n', end='\n\n')
 
                 if ret == 'exit':
