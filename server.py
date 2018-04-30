@@ -14,12 +14,14 @@ def load_iplist(path):
     with open(path, 'r') as f:
         iplist = [s.strip() for s in f.readlines()]
 
+    """
     # Check if any invalid address exists
-    pat = re.compile(b'(?:[A-F0-9]{1,4}:){7}[A-F0-9]{1,4}', re.IGNORECASE)
+    pat = re.compile(r'(?:[A-F0-9]{1,4}:){7}[A-F0-9]{1,4}', re.IGNORECASE)
     for i, ip in enumerate(iplist, start=1):
         if pat.fullmatch(ip) is None:  # Invalid address format
             print('Wrong IPv6 format in line {}'.format(i))
             sys.exit()
+    """
 
     return iplist
 
@@ -27,11 +29,14 @@ def load_iplist(path):
 class TcpThread(threading.Thread):
 
     def __init__(self, host, port, bufsize):
+        threading.Thread.__init__(self)
         self.host = host
         self.port = port
         self.bufsize = bufsize
 
     def run(self):
+        global iplist
+
         # Create a socket and listen
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         s.bind((self.host, self.port))
@@ -42,10 +47,11 @@ class TcpThread(threading.Thread):
             c, addr = s.accept()
             print('Connection from {}'.format(addr))
             c.send(b'Connected')
+            print()
 
             # Wait for the client to send requests and then response
             while True:
-                ret = str(c.recv(BUFSIZE))
+                ret = str(c.recv(BUFSIZE), 'utf-8')
                 print('From client:', ret, sep='\n', end='\n\n')
 
                 if ret == 'exit':
@@ -61,7 +67,7 @@ class TcpThread(threading.Thread):
 
                     # Send CoAP request to actual mote
                     print('Send to mote {}..'.format(moteno))
-                    ret = coap.req_coap(iplist[moteno], 'put', payload)
+                    ret = coap.req_coap(iplist[moteno], 'PUT', payload)
                     print('From mote {}:'.format(moteno), ret, sep='\n')
 
                     # Forward response message to client
@@ -76,7 +82,7 @@ class TcpThread(threading.Thread):
 class CoapThread(threading.Thread):
 
     def __init__(self):
-        pass
+        threading.Thread.__init__(self)
 
     def run(self):
         pass
@@ -86,6 +92,8 @@ def main():
     global IPLIST_PATH
     global PORT
     global BUFSIZE
+
+    global iplist
 
     print('Team 4 (server)', end='\n\n')
 

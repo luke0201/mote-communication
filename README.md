@@ -5,6 +5,14 @@ This is a project from team 4.
 - client.py runs over Python 3.6, whereas server.py runs over Python 2.7. This is due to the coapthon package.
 - cred directory contains the resource to be uploaded on the mote.
 
+
+## Todo
+
+- Write your mote's IPs in ```iplist.txt```
+- Modify ```HOST``` in ```client.py``` to your IP address
+- Run ```server.py``` and ```client.py```
+
+
 ## Members
 
 [luke0201](https://github.com/luke0201): 이주명
