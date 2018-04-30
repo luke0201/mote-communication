@@ -47,7 +47,8 @@ def main():
             ret = str(c.recv(BUFSIZE))
             print('From client:', ret, sep='\n', end='\n\n')
 
-            if ret == 'exit': break
+            if ret == 'exit':
+                break
             ret = ret.split()
 
             if len(ret) != 4 or ret[0] != 'put' or ret[2] != 'to':

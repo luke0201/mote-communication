@@ -1,9 +1,10 @@
 #!/usr/bin/env python
+
 import getopt
 import socket
 import sys
 
-# python 2, 3 호환을 위한 모듈
+# Python3-compatibility modules
 from __future__ import print_function
 from __future__ import unicode_literals
 from __future__ import division
@@ -16,6 +17,7 @@ __author__ = 'Giacomo Tanganelli'
 
 client = None
 
+
 def client_callback(response):
     print "Callback"
 
@@ -26,13 +28,17 @@ def client_callback_observe(response):  # pragma: no cover
     check = True
     while check:
         chosen = raw_input("Stop observing? [y/N]: ")
-        if chosen != "" and not (chosen == "n" or chosen == "N" or chosen == "y" or chosen == "Y"):
+        if chosen != "" and not (
+                chosen == "n" or chosen == "N"
+                or chosen == "y" or chosen == "Y"):
             print "Unrecognized choose."
             continue
         elif chosen == "y" or chosen == "Y":
             while True:
                 rst = raw_input("Send RST message? [Y/n]: ")
-                if rst != "" and not (rst == "n" or rst == "N" or rst == "y" or rst == "Y"):
+                if rst != "" and not (
+                        rst == "n" or rst == "N"
+                        or rst == "y" or rst == "Y"):
                     print "Unrecognized choose."
                     continue
                 elif rst == "" or rst == "y" or rst == "Y":
@@ -43,6 +49,7 @@ def client_callback_observe(response):  # pragma: no cover
                 break
         else:
             break
+
 
 # path: coap://[IPv6 address of mote]/[resource name]
 # op: GET, OBSERVE, DELETE, POST, PUT, DISCOVER
@@ -59,7 +66,7 @@ def req_coap(host, op, payload):
 
     path = "red"
     port = 5683
-    
+
     try:
         tmp = socket.gethostbyname(host)
         host = tmp

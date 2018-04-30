@@ -19,18 +19,19 @@ def main():
     while True:
         oper = input('> ')
 
-        if oper == 'help': # Print help message
+        if oper == 'help':  # Print help message
             print('Message format: <req_type> [<payload>] [to <mote_no>]')
 
-        else: # Communicate
+        else:  # Communicate
             print('Sending message to server..')
             s.send(bytes(oper, 'utf-8'))
             print(s.recv(BUFSIZE))
 
         print()
 
-        if oper == 'exit': break
-    
+        if oper == 'exit':
+            break
+
     # Close the connection
     s.close()
 

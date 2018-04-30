@@ -24,7 +24,8 @@ def main():
             print('From client:', ret, sep='\n', end='\n\n')
 
             c.send(ret)
-            if ret == b'exit': break
+            if ret == b'exit':
+                break
 
         c.close()
 
