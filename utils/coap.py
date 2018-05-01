@@ -13,15 +13,12 @@ def req_coap(host, op, payload):
 
     if op == 'GET':
         response = client.get(path)
-        print(response.pretty_print())
         client.stop()
     elif op == 'POST':
         response = client.post(path, payload)
-        print(response.pretty_print())
         client.stop()
     elif op == 'PUT':
         response = client.put(path, payload)
-        print(response.pretty_print())
         client.stop()
     else:
         raise Exception('Operation not recognized')
