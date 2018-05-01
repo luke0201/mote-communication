@@ -1,10 +1,10 @@
 import sys
 import socket
 
-BUFSIZE = 1024
-
 
 def main():
+    bufsize = 1024
+
     print('Server test', end='\n\n')
 
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -20,7 +20,7 @@ def main():
         c.send(b'Connected')
 
         while True:
-            ret = c.recv(BUFSIZE)
+            ret = c.recv(bufsize)
             print('From client:', ret, sep='\n', end='\n\n')
 
             c.send(ret)
