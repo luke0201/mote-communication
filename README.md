@@ -8,6 +8,10 @@ This is a project from team 4.
 
 ## Todo
 
+- Install the requirements by running the following script:
+```
+pip3 install -r requirements.txt
+```
 - Write your motes' IPs in ```iplist.txt```
 - Modify ```HOST``` in ```client.py``` to your IP address
 - Run ```server.py``` and ```client.py```
