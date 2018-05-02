@@ -70,7 +70,7 @@ class TcpThread(threading.Thread):
 
                     # Send CoAP request to actual mote
                     print('Send to mote {}..'.format(moteno))
-                    ret = coap.req_coap(self.iplist[moteno], 'PUT', payload)
+                    ret = coap.req_coap(self.iplist[moteno], 'PUT', payload).payload
                     if ret is not None:
                         print('From mote {}:'.format(moteno), ret, sep='\n')
 

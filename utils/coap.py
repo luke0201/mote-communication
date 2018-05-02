@@ -5,10 +5,9 @@ from coapthon.client.helperclient import HelperClient
 
 
 def req_coap(host, op, payload):
-    res = 'red'
     port = 5683
+    path = 'red'
 
-    path = 'coap://{}:{}/{}'.format(host, port, res)
     client = HelperClient(server=(host, port))
 
     if op == 'GET':

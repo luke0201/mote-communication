@@ -2,7 +2,7 @@
 
 This is a project from team 4.
 
-- client.py runs over Python 3.6, whereas server.py runs over Python 2.7. This is due to the coapthon package.
+- The server is built with Python3.
 - cred directory contains the resource to be uploaded on the mote.
 
 
