@@ -102,3 +102,8 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+
+# Miscellaneous files specific to our project
+iplist.txt
+logging.conf

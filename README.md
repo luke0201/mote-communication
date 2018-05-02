@@ -2,8 +2,20 @@
 
 This is a project from team 4.
 
-- client.py runs over Python 3.6, whereas server.py runs over Python 2.7. This is due to the coapthon package.
+- The server is built with Python3.
 - cred directory contains the resource to be uploaded on the mote.
+
+
+## Todo
+
+- Install the requirements by running the following script:
+```
+pip3 install -r requirements.txt
+```
+- Write your motes' IPs in ```iplist.txt```
+- Modify ```HOST``` in ```client.py``` to your IP address
+- Run ```server.py``` and ```client.py```
+
 
 ## Members
 

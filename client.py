@@ -1,41 +1,43 @@
 import sys
 import socket
 
-HOST = '0.0.0.0'
-PORT = 4444
-BUFSIZE = 1024
-
 
 def main():
-    print('Team 4', end='\n\n')
+    host = ''
+    port = 4444
+    bufsize = 1024
+
+    print('Team 4 (client)', end='\n\n')
 
     # Connect to server
-    print('Connecting to server..')
-    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    s.connect((HOST, PORT))
-    print(s.recv(BUFSIZE), end='\n\n')
+    try:
+        print('Connecting to server..')
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        s.connect((host, port))
+        print(str(s.recv(bufsize), 'utf-8'), end='\n\n')
+    except ConnectionError:
+        print('Unable to connect')
+        sys.exit()
 
     # Interactive terminal-like..
     while True:
-        print('>', end=' ')
-        oper = input()
+        oper = input('> ')
 
-        if oper == 'help': # Print help message
+        if oper == 'help':  # Print help message
             print('Message format: <req_type> [<payload>] [to <mote_no>]')
 
-        else: # Communicate
+        else:  # Communicate
             print('Sending message to server..')
             s.send(bytes(oper, 'utf-8'))
-            print(s.recv(BUFSIZE))
+            print('Received "{}"'.format(str(s.recv(bufsize), 'utf-8')))
 
         print()
 
-        if oper == 'exit': break
-    
+        if oper == 'exit':
+            break
+
     # Close the connection
     s.close()
-
-    print('Goodbye')
 
 
 if __name__ == '__main__':
