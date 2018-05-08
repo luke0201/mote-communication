@@ -10,15 +10,6 @@ def load_iplist(path):
     with open(path, 'r') as f:
         iplist = [s.strip() for s in f.readlines()]
 
-    """
-    # Check if any invalid address exists
-    pat = re.compile(r'(?:[A-F0-9]{1,4}:){7}[A-F0-9]{1,4}', re.IGNORECASE)
-    for i, ip in enumerate(iplist, start=1):
-        if pat.fullmatch(ip) is None:  # Invalid address format
-            print('Wrong IPv6 format in line {}'.format(i))
-            sys.exit()
-    """
-
     return iplist
 
 
@@ -70,7 +61,8 @@ class TcpThread(threading.Thread):
 
                     # Send CoAP request to actual mote
                     print('Send to mote {}..'.format(moteno))
-                    ret = coap.req_coap(self.iplist[moteno], 'PUT', payload).payload
+                    ret = coap.req_coap(
+                            self.iplist[moteno], 'PUT', payload).payload
                     if ret is not None:
                         print('From mote {}:'.format(moteno), ret, sep='\n')
 
@@ -82,7 +74,7 @@ class TcpThread(threading.Thread):
                         print('CoAP transmission failed')
 
                 print()
-            print('Coonection closed', end='\n\n')
+            print('Connection closed', end='\n\n')
             c.close()
         s.close()
 
